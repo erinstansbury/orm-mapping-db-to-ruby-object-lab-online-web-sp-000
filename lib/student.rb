@@ -73,7 +73,7 @@ class Student
     sql = <<-SQL
     SELECT * 
     FROM students
-    WHERE students.grade = 10
+    WHERE grade = 10
     LIMIT 1
     SQL
     DB[:conn].execute(sql).collect do |row|
@@ -81,6 +81,13 @@ class Student
     end.first
   end
   
+  def self.all_students_in_grade_X(X)
+    sql = <<-SQL
+    SELECT * 
+    FROM students
+    WHERE grade = ?
+    SQL
+  end
   
   def save
     sql = <<-SQL
